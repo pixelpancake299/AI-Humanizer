@@ -1,0 +1,13 @@
+{
+  "name": "Draftmate",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "postStartCommand": "python3 -m http.server 8500",
+  "forwardPorts": [8500],
+  "portsAttributes": {
+    "8500": {
+      "label": "Draftmate website",
+      "onAutoForward": "openBrowser",
+      "elevateIfNeeded": true
+    }
+  }
+}
