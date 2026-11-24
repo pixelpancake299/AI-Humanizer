@@ -1,26 +1,33 @@
 {
   "name": "AI Humanizer",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
-  "forwardPorts": [3000],
+  "postCreateCommand": "npm install",
+  "postStartCommand": "bash .devcontainer/start.sh",
+  "forwardPorts": [
+    3000
+  ],
   "portsAttributes": {
     "3000": {
       "label": "AI Humanizer website",
       "onAutoForward": "openBrowser",
-      "visibility": "private"
+      "elevateIfNeeded": true
     }
   },
-  "postCreateCommand": "npm install",
-  "postStartCommand": "bash .devcontainer/start.sh",
   "customizations": {
     "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint"],
+      "extensions": [
+        "dbaeumer.vscode-eslint"
+      ],
       "settings": {
         "editor.formatOnSave": true,
         "files.eol": "\n"
       }
     },
     "codespaces": {
-      "openFiles": ["app/page.tsx", "README.md"]
+      "openFiles": [
+        "app/page.tsx",
+        "README.md"
+      ]
     }
   }
 }
