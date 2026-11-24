@@ -125,7 +125,7 @@ function createApp({ openaiClient, apiKey = process.env.OPENAI_API_KEY, model = 
 }
 
 if (require.main === module) {
-  const port = Number(process.env.PORT) || 8500;
+  const port = Number(process.env.PORT) || 8080;
   createApp().listen(port, "0.0.0.0", () => console.log(`Draftmate luistert op http://0.0.0.0:${port}`));
 }
 

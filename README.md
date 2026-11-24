@@ -27,13 +27,13 @@ Start de applicatie:
 npm start
 ```
 
-Open [http://localhost:8500](http://localhost:8500). De server levert de website en de beveiligde `/api/humanize`-route vanaf dezelfde origin. De API-key blijft op de server en wordt nooit naar de browser gestuurd. Zonder API-key start de website wel, maar geeft verbeteren een duidelijke configuratiefout.
+Open [http://localhost:8080](http://localhost:8080). De server levert de website en de beveiligde `/api/humanize`-route vanaf dezelfde origin. De API-key blijft op de server en wordt nooit naar de browser gestuurd. Zonder API-key start de website wel, maar geeft verbeteren een duidelijke configuratiefout.
 
 Voor automatisch herstarten tijdens ontwikkeling: `npm run dev`.
 
 ## GitHub Codespaces
 
-De Dev Container installeert dependencies bij het aanmaken en start de Node-backend op poort **8500**. Codespaces forwardt de poort en opent de website automatisch. Stel `OPENAI_API_KEY` in als Codespaces-secret (of lokaal in `.env`); zet de sleutel niet in frontendbestanden of commits.
+De Dev Container installeert dependencies bij het aanmaken en start de volledige Node-app op poort **8080**. Codespaces forwardt de poort en opent de homepage automatisch; de AI-route blijft op dezelfde origin beschikbaar. Stel `OPENAI_API_KEY` in als Codespaces-secret (of lokaal in `.env`); zet de sleutel niet in frontendbestanden of commits.
 
 ## Gebruik en privacy
 
