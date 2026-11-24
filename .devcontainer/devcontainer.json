@@ -3,10 +3,10 @@
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
   "postCreateCommand": "npm ci",
   "postStartCommand": "nohup npm run start > /tmp/draftmate.log 2>&1 < /dev/null &",
-  "forwardPorts": [8080],
+  "forwardPorts": [8500],
   "portsAttributes": {
-    "8080": {
-      "label": "HTML/CSS-omgeving",
+    "8500": {
+      "label": "Draftmate website",
       "onAutoForward": "openBrowser",
       "elevateIfNeeded": true
     }
