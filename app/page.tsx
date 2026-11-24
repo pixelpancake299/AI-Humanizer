@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <main className="shell">
       <header className="topbar">
-        <a className="brand" href="#"><span className="brand-mark">s</span> schrijfmaat</a>
+        <a className="brand" href="#"><span className="brand-mark">✳</span> AI Humanizer</a>
         <span className="top-note">Jouw woorden. Een beetje scherper.</span>
       </header>
 
@@ -74,8 +74,8 @@ export default function Home() {
           <label className="full-label text-label">Plak of typ je tekst<textarea className="main-textarea" value={text} onChange={e => setText(e.target.value)} placeholder="Begin hier met schrijven of plak je tekst..." maxLength={12000} /><span className="char-count">{text.length.toLocaleString("nl-NL")} / 12.000</span></label>
 
           <details className="sample-details">
-            <summary><span>＋</span> Laat Schrijfmaat kennismaken met jouw schrijfstijl <small>optioneel</small></summary>
-            <p>Voeg een stukje tekst toe dat je zelf hebt geschreven. Schrijfmaat gebruikt dit alleen om algemene stijlkenmerken te herkennen.</p>
+            <summary><span>＋</span> Laat AI Humanizer kennismaken met jouw schrijfstijl <small>optioneel</small></summary>
+            <p>Voeg een stukje tekst toe dat je zelf hebt geschreven. AI Humanizer gebruikt dit alleen om algemene stijlkenmerken te herkennen.</p>
             <textarea value={sample} onChange={e => setSample(e.target.value)} placeholder="Een eerder stukje tekst van jezelf..." maxLength={5000} />
             <span className="char-count">{sample.length.toLocaleString("nl-NL")} / 5.000</span>
           </details>
@@ -92,7 +92,7 @@ export default function Home() {
           {result && <div className="result-content"><textarea className="result-textarea" value={result.improvedText} onChange={e => setResult({ ...result, improvedText: e.target.value })} /><button className="copy-button" onClick={copyResult}>{copied ? "Gekopieerd ✓" : "Kopieer tekst ↗"}</button><div className="feedback-box"><h3>Wat is aangepast?</h3><p>{result.summary}</p></div><div className="notes-grid"><div><h3>Stijlherkenning</h3><ul>{result.styleNotes?.map((x, i) => <li key={i}>{x}</li>)}</ul></div><div><h3>Controleer zelf nog</h3><ul>{result.checkPoints?.map((x, i) => <li key={i}>{x}</li>)}</ul></div></div></div>}
         </div>
       </section>
-      <footer><span>schrijfmaat</span><span>Een hulpmiddel om beter te leren schrijven.</span></footer>
+      <footer><span>AI Humanizer</span><span>Een hulpmiddel om beter te leren schrijven.</span></footer>
     </main>
   );
 }
