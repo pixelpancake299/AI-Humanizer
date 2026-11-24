@@ -71,7 +71,9 @@ test("reports a missing API key clearly", async () => {
       method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text: "Een geldige invoertekst." })
     });
     assert.equal(response.status, 503);
-    assert.equal((await response.json()).code, "API_KEY_MISSING");
+    const body = await response.json();
+    assert.equal(body.code, "API_KEY_MISSING");
+    assert.match(body.error, /Codespaces-secret OPENAI_API_KEY/);
   } finally {
     await new Promise(resolve => noKeyServer.close(resolve));
   }

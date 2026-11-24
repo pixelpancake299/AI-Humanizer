@@ -85,7 +85,10 @@ function createApp({ openaiClient, apiKey = process.env.OPENAI_API_KEY, model = 
   app.post("/api/humanize", async (req, res) => {
     const validationError = validateInput(req.body);
     if (validationError) return res.status(400).json({ error: validationError, code: "INVALID_INPUT" });
-    if (!apiKey) return res.status(503).json({ error: "De AI is nog niet ingesteld. Voeg OPENAI_API_KEY toe aan de serveromgeving.", code: "API_KEY_MISSING" });
+    if (!apiKey) return res.status(503).json({
+      error: "De OpenAI API-key ontbreekt. Stel een Codespaces-secret OPENAI_API_KEY in en herstart de Codespace, of voeg OPENAI_API_KEY toe aan .env.",
+      code: "API_KEY_MISSING"
+    });
 
     try {
       const client = openaiClient || new OpenAI({ apiKey, timeout: 45_000, maxRetries: 1 });

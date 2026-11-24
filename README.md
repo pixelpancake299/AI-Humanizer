@@ -31,9 +31,15 @@ Open [http://localhost:8080](http://localhost:8080). De server levert de website
 
 Voor automatisch herstarten tijdens ontwikkeling: `npm run dev`.
 
-## GitHub Codespaces
+## GitHub Codespaces en API-key instellen
 
-De Dev Container installeert dependencies bij het aanmaken en start de volledige Node-app op poort **8080**. Codespaces forwardt de poort en opent de homepage automatisch; de AI-route blijft op dezelfde origin beschikbaar. Stel `OPENAI_API_KEY` in als Codespaces-secret (of lokaal in `.env`); zet de sleutel niet in frontendbestanden of commits.
+De Dev Container installeert dependencies bij het aanmaken en start de volledige Node-app op poort **8080**. Codespaces forwardt de poort en opent de homepage automatisch; de AI-route blijft op dezelfde origin beschikbaar.
+
+1. Maak een API-key aan op [platform.openai.com/api-keys](https://platform.openai.com/api-keys). Gebruik de volledige sleutel die OpenAI toont; dit is niet je ChatGPT-wachtwoord of ChatGPT-abonnement. Deel de sleutel niet in chat of code.
+2. Open in GitHub **Repository → Settings → Secrets and variables → Codespaces → New repository secret**. Vul bij **Name** exact `OPENAI_API_KEY` in en bij **Secret** de volledige OpenAI API-key. Geef de Codespace toegang tot deze repository-secret.
+3. Herstart of rebuild de Codespace zodat de secret als omgevingsvariabele aan de server wordt doorgegeven. De server leest die variabele bij het opstarten.
+
+Een gewone **Actions secret** is niet automatisch beschikbaar in Codespaces; kies expliciet **Codespaces**. Voor lokaal gebruik kun je in de repositoryroot `.env` aanmaken (kopieer `.env.example`) en daar `OPENAI_API_KEY=je_volledige_openai_api_key` zetten. `.env` wordt door Git genegeerd en mag niet worden gecommit. Als de sleutel ontbreekt, start de website nog steeds, maar tekstverbetering geeft een configuratiefout.
 
 ## Gebruik en privacy
 
