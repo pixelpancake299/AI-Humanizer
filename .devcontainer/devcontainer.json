@@ -2,7 +2,7 @@
   "name": "Draftmate",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
   "postCreateCommand": "npm ci",
-  "postStartCommand": "nohup npm run start > /tmp/draftmate.log 2>&1 < /dev/null &",
+  "postStartCommand": "sh .devcontainer/start-server.sh",
   "forwardPorts": [8500],
   "portsAttributes": {
     "8500": {

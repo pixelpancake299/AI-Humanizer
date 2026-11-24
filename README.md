@@ -33,7 +33,7 @@ Voor automatisch herstarten tijdens ontwikkeling: `npm run dev`.
 
 ## GitHub Codespaces en API-key instellen
 
-De Dev Container installeert dependencies bij het aanmaken en start de volledige Node-app op poort **8500**. Codespaces forwardt de poort en opent de homepage automatisch; de AI-route blijft op dezelfde origin beschikbaar.
+De Dev Container installeert dependencies bij het aanmaken en start de volledige Node-app op poort **8500**. De startcontrole wacht op de health-route; als de server niet start, wordt de fout getoond in de Codespaces-terminal en gelogd in `/tmp/draftmate.log`. Codespaces forwardt de poort en opent de homepage automatisch; de AI-route blijft op dezelfde origin beschikbaar.
 
 1. Maak een API-key aan op [platform.openai.com/api-keys](https://platform.openai.com/api-keys). Gebruik de volledige sleutel die OpenAI toont; dit is niet je ChatGPT-wachtwoord of ChatGPT-abonnement. Deel de sleutel niet in chat of code.
 2. Open in GitHub **Repository → Settings → Secrets and variables → Codespaces → New repository secret**. Vul bij **Name** exact `OPENAI_API_KEY` in en bij **Secret** de volledige OpenAI API-key. Geef de Codespace toegang tot deze repository-secret.
