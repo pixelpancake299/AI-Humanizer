@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-cd /workspaces/AI-Humanizer
+cd "$(dirname "$0")/.."
 
 if ! curl --silent --fail http://localhost:3000/index.html >/dev/null 2>&1; then
   nohup npm run dev -- --hostname 0.0.0.0 > /tmp/ai-humanizer-dev.log 2>&1 < /dev/null &
