@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="enhancements.css">
 </head>
 <body>
   <div class="app-shell">
@@ -35,41 +36,58 @@
         <div class="panel editor-panel">
           <div class="panel-heading"><div><span class="step">01</span><h2>Jouw tekst</h2></div><span class="optional-tag">BEGIN HIER</span></div>
           <div class="field-grid">
-            <label>Schrijftaal<select id="language"><option value="nl">Nederlands</option><option value="en">English</option><option value="de">Deutsch</option></select></label>
-            <label>Onderwijsniveau<select id="level"><option value="vmbo">VMBO</option><option value="havo" selected>HAVO</option><option value="vwo">VWO</option><option value="mbo">MBO</option><option value="hbo">HBO</option><option value="other">Anders</option></select></label>
+            <label>Schrijftaal<select id="language"><option value="nl">Nederlands</option><option value="en">Engels</option><option value="de">Duits</option><option value="fr">Frans</option><option value="other">Andere taal</option></select></label>
+            <label>Onderwijsniveau<select id="level"><option value="primary">Basisschool</option><option value="vmbo">VMBO</option><option value="havo" selected>HAVO</option><option value="vwo">VWO</option><option value="mbo">MBO</option><option value="hbo">HBO</option><option value="university">Universiteit</option><option value="other">Anders</option></select></label>
             <label>Leerjaar / klas<input id="year" type="text" placeholder="Bijv. 3 havo"></label>
             <label>Leeftijd<input id="age" type="number" min="10" max="99" placeholder="Bijv. 15"></label>
+            <label id="customLanguageField" class="hidden">Welke taal?<input id="customLanguage" type="text" maxlength="40" placeholder="Bijv. Spaans"></label>
+            <label>Gewenste schrijfstijl<select id="desiredStyle"><option value="neutral">Natuurlijk en helder</option><option value="informal">Informeler</option><option value="formal">Formeler</option><option value="concise">Kort en bondig</option><option value="simple">Eenvoudiger</option></select></label>
           </div>
           <div class="text-label-row"><label for="inputText">Plak of typ je tekst</label><span id="wordCount">0 woorden</span></div>
           <textarea id="inputText" placeholder="Plak hier je tekst. Dat kan een opdracht, verslag, e-mail of een eigen alinea zijn..."></textarea>
-          <div class="editor-footer"><span><span class="tiny-check">✓</span> Je tekst blijft in deze browser</span><button class="text-button" id="exampleBtn">Probeer een voorbeeld ↗</button></div>
+          <div class="editor-footer"><span><span class="tiny-check">✓</span> Alleen verstuurd voor deze verbetering; niet opgeslagen</span><button class="text-button" id="exampleBtn">Probeer een voorbeeld ↗</button></div>
+          <fieldset class="goals-fieldset">
+            <legend>Wat wil je verbeteren? <span>(kies een of meer)</span></legend>
+            <div class="goal-grid">
+              <label><input type="checkbox" name="goal" value="natural" checked><span>Natuurlijker formuleren</span></label>
+              <label><input type="checkbox" name="goal" value="grammar"><span>Spelling en grammatica</span></label>
+              <label><input type="checkbox" name="goal" value="clarity"><span>Zinnen duidelijker maken</span></label>
+              <label><input type="checkbox" name="goal" value="voice"><span>Mijn schrijfstijl volgen</span></label>
+              <label><input type="checkbox" name="goal" value="informal"><span>Minder formeel maken</span></label>
+              <label><input type="checkbox" name="goal" value="shorten"><span>Tekst inkorten</span></label>
+              <label><input type="checkbox" name="goal" value="expand"><span>Tekst uitbreiden</span></label>
+              <label><input type="checkbox" name="goal" value="repetition"><span>Herhaling verminderen</span></label>
+              <label><input type="checkbox" name="goal" value="simplify"><span>Moeilijke woorden vereenvoudigen</span></label>
+              <label><input type="checkbox" name="goal" value="structure"><span>Zinsstructuur verbeteren</span></label>
+            </div>
+          </fieldset>
           <div class="divider"></div>
           <div class="panel-heading compact"><div><span class="step">02</span><h2>Jouw schrijfstijl</h2></div><span class="optional-tag">OPTIONEEL</span></div>
           <p class="field-hint">Heb je een eerdere tekst geschreven? Voeg een stukje toe zodat de feedback rekening kan houden met jouw gebruikelijke woordkeuze en zinslengte.</p>
           <textarea class="sample-input" id="styleSample" placeholder="Een kort stukje van een eerdere tekst (optioneel)..."></textarea>
-          <div class="bottom-controls"><label class="checkbox-label"><input id="keepVoice" type="checkbox" checked><span class="custom-check"></span> Behoud mijn eigen schrijfstijl</label><button class="button button-primary" id="analyzeBtn"><span>✦</span> Bekijk mijn tekst <b>→</b></button></div>
+          <div class="bottom-controls"><label class="checkbox-label"><input id="keepVoice" type="checkbox" checked><span class="custom-check"></span> Behoud mijn eigen schrijfstijl</label><button class="button button-primary" id="analyzeBtn"><span>✦</span> Verbeter mijn tekst <b>→</b></button></div>
         </div>
 
         <div class="panel result-panel" id="resultPanel">
           <div class="panel-heading"><div><span class="step">03</span><h2>Schrijfadvies</h2></div><span class="live-tag"><i></i> LIVE WERKRUIMTE</span></div>
           <div class="empty-state" id="emptyState"><div class="empty-illustration"><div class="paper paper-back"></div><div class="paper paper-front"><span>✦</span><i></i><i></i><i></i></div><div class="floating-star">✧</div></div><h3>Je volgende stap begint hier.</h3><p>Vul links je tekst in en klik op <strong>‘Bekijk mijn tekst’</strong>. Je krijgt concrete feedback en een verbeterde versie om mee verder te werken.</p><div class="empty-points"><span>✓ Duidelijkheid & structuur</span><span>✓ Spelling & grammatica</span><span>✓ Jouw eigen toon behouden</span></div></div>
           <div class="results hidden" id="results">
-            <div class="score-row"><div><small>TEKSTCHECK</small><h3 id="resultTitle">Je tekst is binnen</h3></div><div class="word-pill" id="resultWords">0 woorden</div></div>
-            <div class="metrics" id="metrics"></div>
-            <div class="feedback-block"><div class="feedback-title"><span>✦</span><strong>Dit gaat al goed</strong></div><ul id="strengths"></ul></div>
-            <div class="feedback-block suggestions-block"><div class="feedback-title"><span>↗</span><strong>Hier kun je aan werken</strong></div><ul id="suggestions"></ul></div>
+            <div class="score-row"><div><small>JOUW VERBETERDE TEKST</small><h3 id="resultTitle">Klaar om verder te schrijven</h3></div><div class="word-pill" id="resultWords">0 woorden</div></div>
+            <div class="feedback-block"><div class="feedback-title"><span>✦</span><strong>Belangrijkste wijzigingen</strong></div><ul id="changes"></ul></div>
+            <div class="feedback-block"><div class="feedback-title"><span>↗</span><strong>Feedback op jouw schrijfstijl</strong></div><p id="styleFeedback" class="result-paragraph"></p></div>
+            <div class="feedback-block suggestions-block"><div class="feedback-title"><span>ⓘ</span><strong>Controleer zelf nog</strong></div><ul id="checkPoints"></ul></div>
             <div class="rewrite-heading"><div><span class="step">04</span><h3>Verbeterde versie</h3></div><span class="optional-tag">VOORSTEL</span></div>
             <p class="field-hint">Een suggestie om je tekst duidelijker te maken. Controleer altijd of de formulering nog precies zegt wat jij bedoelt.</p>
             <textarea id="outputText" class="output-text" aria-label="Verbeterde tekst"></textarea>
-            <div class="output-actions"><button class="button button-secondary" id="copyBtn">Kopieer tekst</button><button class="button button-primary" id="useBtn">Gebruik als nieuwe tekst →</button></div>
+            <div class="output-actions"><button class="button button-secondary" id="regenerateBtn">Opnieuw verbeteren</button><button class="button button-secondary" id="copyBtn">Kopieer tekst</button><button class="button button-primary" id="useBtn">Verder aanpassen →</button></div>
             <div class="notice"><span>ⓘ</span> Dit is een schrijfhulp, geen detector of automatische beoordeling. Jij blijft verantwoordelijk voor je eigen werk.</div>
           </div>
         </div>
       </section>
-      <footer class="page-footer"><span>Draftmate <span class="footer-dot">•</span> Schrijf met vertrouwen.</span><span>Een hulpmiddel om beter te leren schrijven.</span></footer>
+      <footer class="page-footer"><span>Draftmate <span class="footer-dot">•</span> Schrijf met vertrouwen.</span><span>Een schrijfhulp om zelf beter te leren schrijven.</span></footer>
     </main>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>

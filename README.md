@@ -1,27 +1,53 @@
-# Draftmate
+# Draftmate — AI-schrijfcoach
 
-Een lichte, Nederlandstalige schrijfcoach die lokaal in je browser draait.
+Een Nederlandstalige AI-schrijfcoach die spelling, duidelijkheid en formulering verbetert en daarbij rekening houdt met jouw leeftijd, onderwijsniveau, doelen en optionele schrijfstijlvoorbeeld.
 
-## Starten in GitHub Codespaces
-De Dev Container start automatisch een statische webserver op poort **8500**. Codespaces forwardt deze poort en opent de website automatisch.
+## Benodigdheden
+- Node.js 20 of hoger en npm.
+- Een OpenAI API-key voor tekstverbetering.
 
-Als de server niet automatisch draait, open dan de terminal en voer uit:
+## Lokaal starten
 
 ```bash
-python3 -m http.server 8500
+npm ci
+cp .env.example .env
 ```
 
-Open daarna tab **Ports** en klik op de doorgestuurde poort 8500.
+Zet je API-key in `.env`:
 
-## Functies
-- Nederlandse interface met ondersteuning voor Nederlands, Engels en Duits.
-- Contextvelden voor onderwijsniveau, leerjaar en leeftijd.
-- Teksteditor, woordenteller en voorbeeldtekst.
-- Optioneel voorbeeld van je eigen schrijfstijl.
-- Feedback op zinslengte, tekstomvang en herhaling.
-- Voorstel met veilige opmaak- en interpunctiecorrecties.
-- Kopiëren en verbeterde versie terugzetten in de editor.
-- Concept lokaal bewaren in de browser.
+```env
+OPENAI_API_KEY=je_openai_api_key
+# Optioneel; standaard gpt-4o-mini
+OPENAI_MODEL=gpt-4o-mini
+```
 
-## Eerlijk over de huidige versie
-Dit is een volledig werkende frontend-demo. De tekstcontrole en correcties draaien lokaal met eenvoudige regels; er is nog geen AI-model of externe API gekoppeld. De tool is bedoeld om je eigen schrijfwerk te verbeteren en ervan te leren, niet om AI-gebruik of detectoren te omzeilen. Je tekst wordt niet naar een server verstuurd.
+Start de applicatie:
+
+```bash
+npm start
+```
+
+Open [http://localhost:8500](http://localhost:8500). De server levert de website en de beveiligde `/api/humanize`-route vanaf dezelfde origin. De API-key blijft op de server en wordt nooit naar de browser gestuurd. Zonder API-key start de website wel, maar geeft verbeteren een duidelijke configuratiefout.
+
+Voor automatisch herstarten tijdens ontwikkeling: `npm run dev`.
+
+## GitHub Codespaces
+
+De Dev Container installeert dependencies bij het aanmaken en start de Node-backend op poort **8500**. Codespaces forwardt de poort en opent de website automatisch. Stel `OPENAI_API_KEY` in als Codespaces-secret (of lokaal in `.env`); zet de sleutel niet in frontendbestanden of commits.
+
+## Gebruik en privacy
+
+- Kies taal, onderwijsniveau, leerjaar/klas, leeftijd, gewenste stijl en een of meer verbeterdoelen.
+- Voeg optioneel een eerder zelfgeschreven tekst toe. De coach leidt hier stijlkenmerken uit af, maar gebruikt die tekst niet als opdracht.
+- Resultaten zijn rechtstreeks bewerkbaar, kopieerbaar en opnieuw te verbeteren.
+- De oorspronkelijke tekst en het stijlvoorbeeld worden alleen voor de aanvraag naar de OpenAI API gestuurd. De app slaat ze niet op in de browser of op de server.
+- Invoer is begrensd tot 12.000 tekens; het stijlvoorbeeld tot 5.000 tekens.
+- De coach hoort geen feiten, argumenten of voorbeelden toe te voegen. Controleer altijd zelf of formulering en betekenis kloppen.
+
+## Tests
+
+```bash
+npm test
+```
+
+De tests controleren de homepage en health-route, een volledige gesimuleerde AI-aanvraag, invoerlimieten, ontbrekende API-key en tijdelijke upstream-fouten. Een echte tekstverbetering vereist een geldige OpenAI API-key.

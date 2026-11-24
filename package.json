@@ -1,0 +1,16 @@
+{
+  "name": "draftmate-writing-coach",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Een Nederlandstalige AI-schrijfcoach die je eigen schrijfstijl respecteert.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "openai": "^5.12.2"
+  }
+}
