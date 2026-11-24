@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="Schrijf slimmer met Draftmate: duidelijke feedback en verbeteringen die jouw eigen stem behouden.">
+  <title>Draftmate — Schrijf met vertrouwen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Draftmate startpagina"><span class="brand-mark">d.</span><span>draftmate</span></a>
+      <div class="side-label">WERKRUIMTE</div>
+      <button class="nav-item active" type="button"><span class="nav-icon">✎</span> Schrijfcoach</button>
+      <button class="nav-item" id="examplesNav" type="button"><span class="nav-icon">▤</span> Voorbeelden</button>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">✦</div><strong>Jouw tekst, jouw stem.</strong><p>Gebruik feedback om zelf sterker te leren schrijven.</p></div>
+        <div class="profile-mini"><div class="avatar">D</div><div><strong>Mijn werkruimte</strong><small>Lokale demo</small></div><span class="online-dot"></span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar"><div class="breadcrumb">Werkruimte <span>/</span> <strong>Nieuwe tekst</strong></div><div class="top-actions"><span class="save-status"><i></i> Automatisch lokaal opgeslagen</span><button class="button button-quiet" id="resetBtn">Opnieuw beginnen</button></div></header>
+      <section class="welcome">
+        <div><div class="eyebrow"><span class="sparkle">✦</span> JOUW PERSOONLIJKE SCHRIJFCOACH</div><h1>Maak je tekst <span>sterker.</span></h1><p>Verbeter de duidelijkheid, flow en grammatica — zonder dat jouw eigen ideeën verdwijnen.</p></div>
+        <div class="welcome-badge"><span>✦</span><div><strong>Schrijf bewust</strong><small>Leer van elke verbetering</small></div></div>
+      </section>
+
+      <section class="workspace-grid">
+        <div class="panel editor-panel">
+          <div class="panel-heading"><div><span class="step">01</span><h2>Jouw tekst</h2></div><span class="optional-tag">BEGIN HIER</span></div>
+          <div class="field-grid">
+            <label>Schrijftaal<select id="language"><option value="nl">Nederlands</option><option value="en">English</option><option value="de">Deutsch</option></select></label>
+            <label>Onderwijsniveau<select id="level"><option value="vmbo">VMBO</option><option value="havo" selected>HAVO</option><option value="vwo">VWO</option><option value="mbo">MBO</option><option value="hbo">HBO</option><option value="other">Anders</option></select></label>
+            <label>Leerjaar / klas<input id="year" type="text" placeholder="Bijv. 3 havo"></label>
+            <label>Leeftijd<input id="age" type="number" min="10" max="99" placeholder="Bijv. 15"></label>
+          </div>
+          <div class="text-label-row"><label for="inputText">Plak of typ je tekst</label><span id="wordCount">0 woorden</span></div>
+          <textarea id="inputText" placeholder="Plak hier je tekst. Dat kan een opdracht, verslag, e-mail of een eigen alinea zijn..."></textarea>
+          <div class="editor-footer"><span><span class="tiny-check">✓</span> Je tekst blijft in deze browser</span><button class="text-button" id="exampleBtn">Probeer een voorbeeld ↗</button></div>
+          <div class="divider"></div>
+          <div class="panel-heading compact"><div><span class="step">02</span><h2>Jouw schrijfstijl</h2></div><span class="optional-tag">OPTIONEEL</span></div>
+          <p class="field-hint">Heb je een eerdere tekst geschreven? Voeg een stukje toe zodat de feedback rekening kan houden met jouw gebruikelijke woordkeuze en zinslengte.</p>
+          <textarea class="sample-input" id="styleSample" placeholder="Een kort stukje van een eerdere tekst (optioneel)..."></textarea>
+          <div class="bottom-controls"><label class="checkbox-label"><input id="keepVoice" type="checkbox" checked><span class="custom-check"></span> Behoud mijn eigen schrijfstijl</label><button class="button button-primary" id="analyzeBtn"><span>✦</span> Bekijk mijn tekst <b>→</b></button></div>
+        </div>
+
+        <div class="panel result-panel" id="resultPanel">
+          <div class="panel-heading"><div><span class="step">03</span><h2>Schrijfadvies</h2></div><span class="live-tag"><i></i> LIVE WERKRUIMTE</span></div>
+          <div class="empty-state" id="emptyState"><div class="empty-illustration"><div class="paper paper-back"></div><div class="paper paper-front"><span>✦</span><i></i><i></i><i></i></div><div class="floating-star">✧</div></div><h3>Je volgende stap begint hier.</h3><p>Vul links je tekst in en klik op <strong>‘Bekijk mijn tekst’</strong>. Je krijgt concrete feedback en een verbeterde versie om mee verder te werken.</p><div class="empty-points"><span>✓ Duidelijkheid & structuur</span><span>✓ Spelling & grammatica</span><span>✓ Jouw eigen toon behouden</span></div></div>
+          <div class="results hidden" id="results">
+            <div class="score-row"><div><small>TEKSTCHECK</small><h3 id="resultTitle">Je tekst is binnen</h3></div><div class="word-pill" id="resultWords">0 woorden</div></div>
+            <div class="metrics" id="metrics"></div>
+            <div class="feedback-block"><div class="feedback-title"><span>✦</span><strong>Dit gaat al goed</strong></div><ul id="strengths"></ul></div>
+            <div class="feedback-block suggestions-block"><div class="feedback-title"><span>↗</span><strong>Hier kun je aan werken</strong></div><ul id="suggestions"></ul></div>
+            <div class="rewrite-heading"><div><span class="step">04</span><h3>Verbeterde versie</h3></div><span class="optional-tag">VOORSTEL</span></div>
+            <p class="field-hint">Een suggestie om je tekst duidelijker te maken. Controleer altijd of de formulering nog precies zegt wat jij bedoelt.</p>
+            <textarea id="outputText" class="output-text" aria-label="Verbeterde tekst"></textarea>
+            <div class="output-actions"><button class="button button-secondary" id="copyBtn">Kopieer tekst</button><button class="button button-primary" id="useBtn">Gebruik als nieuwe tekst →</button></div>
+            <div class="notice"><span>ⓘ</span> Dit is een schrijfhulp, geen detector of automatische beoordeling. Jij blijft verantwoordelijk voor je eigen werk.</div>
+          </div>
+        </div>
+      </section>
+      <footer class="page-footer"><span>Draftmate <span class="footer-dot">•</span> Schrijf met vertrouwen.</span><span>Een hulpmiddel om beter te leren schrijven.</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
